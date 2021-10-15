@@ -24,7 +24,6 @@ const actions = {
         }else{
             webUrl = `${Wssockte}/active/new/${page}`
         }
-        console.log(webUrl);
         websock = new WebSocket(webUrl)
         websock.onopen = () =>{}
         websock.onmessage = (mes)=>{
@@ -36,21 +35,17 @@ const actions = {
             }
         }
     }
-
-
 }
 
 const mutations = {
     CLOSEDRAWER(state){
         state.drawerDetail.dra_flag = false
-        console.log(state.drawerDetail.dra_flag);
     },
 
     enterActDetail(state, params){
         state.drawerDetail.official = params[1]
         state.drawerDetail.id = params[0]
         state.drawerDetail.dra_flag = true
-        console.log(state.drawerDetail.dra_flag);
     },
 
     UPDATEACTINFO(state, actinfo){

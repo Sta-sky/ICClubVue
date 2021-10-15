@@ -3,7 +3,6 @@
         <div class='top_info'>
             <el-button type="primary" icon="el-icon-place" circle>
             </el-button>
-
             <el-button type="warning" icon="el-icon-star-off" circle></el-button>
             <el-button type="primary" icon="el-icon-edit" circle></el-button>
         </div>
@@ -17,6 +16,7 @@
                 </div>
             </div>
             <div class="right_info">
+                <el-empty v-if="is_content" description="活动没有添加内容"></el-empty>
                 <p>{{info.content}}</p>
                 <textarea rows="5" cols="92"></textarea>
                 <el-button type="primary" icon="el-icon-comment" ></el-button>
@@ -25,7 +25,7 @@
     </div>
 </template>
 <script>
-    import {onBeforeMount, reactive, toRefs} from 'vue'
+    import {computed, onBeforeMount, reactive, toRefs} from 'vue'
     import axios from 'axios'
     import {staticServer, httpServer} from '../hook/util'
     import {useStore} from 'vuex'
@@ -43,12 +43,15 @@
                     act_img: "",
                     content: "",
                     created_time: ""
-                }
+                },
+                is_content: computed(()=>{
+                    let result = activeInfo.info.content? false:true
+                    return result
+                })
             })
 
             onBeforeMount(() => {
                 let url = null
-                console.log(store.state.active.drawerDetail.official, '[[[[[[[[');
                 if (store.state.active.drawerDetail.official){
                     url = `${httpServer}/v1/activitys/article_info?article_id=${store.state.active.drawerDetail.id}`
                 }else{
@@ -57,9 +60,7 @@
                 axios.get(url).then(
                     response=>{
                         if (response.data.code===200){
-                            console.log(response.data.data);
                             activeInfo.info = response.data.data
-                            console.log(response.data.data);
                         }else{
                             alert(response.data.message)
                         }

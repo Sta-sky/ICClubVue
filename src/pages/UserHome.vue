@@ -9,7 +9,7 @@
 
           <div class='modifyself'>
               <div class='oneInfo' v-for="(value, key, index) in modifyinfo" >
-                <el-tag color='yellow' size='medium'>{{key}}</el-tag>
+                <span>{{key}}</span>
                 <input :ref="setItemRef" :disabled='is_show' type="text" :value=value>
               </div>  
               <div class='btn'>
@@ -30,6 +30,7 @@
           <h2>我发起的活动</h2>
           <ul class='createAct'>
             <transition-group name='cardAct' appear>
+            <el-empty v-if="create_list" description="没有创建过活动，快去创建吧！"></el-empty>
               <li @click=detailAct(item.act_id) class='createCard' v-for="(item, index) in create_act_info" :key="index">
                 <div @click.stop=getDetail(item.act_id)>
                   <el-popover 
@@ -71,9 +72,11 @@
           <h2>我参加的活动</h2>
           <ul class='joinAct'>
             <transition-group name='userTagact' appear>
+              <el-empty v-if="join_list" description="没有参加过活动，快去参加吧！"></el-empty>
               <li @click=detailAct(item.act_id) class='joinCard' v-for="(item, index) in create_act_info" :key="index">
                 <div @click.stop=getDetail(item.act_id)>
                   <el-popover 
+                  
                     placement="right"
                     :width="550"
                     trigger="focus"
@@ -127,7 +130,7 @@
 </template>
 <script>
   import axios from 'axios' 
-  import { reactive, toRefs, computed} from 'vue'
+  import { reactive, toRefs, computed, watch} from 'vue'
   import {httpServer, staticServer} from '../hook/util'
   import {useStore} from 'vuex'
   import {useRoute} from 'vue-router'
@@ -145,7 +148,16 @@
             created_time: null,
             click_num: null,
             like: null
-          }
+          },
+          create_list: computed(()=>{
+            let result =  getInfo.create_act_info.length? false:true 
+            return result
+          }),
+          join_list: computed(()=>{
+            let result =  getInfo.join_act_info.length? false:true 
+            return result
+          }),
+
         })
 
         let store = useStore()
@@ -179,17 +191,20 @@
           )
         }
 
+        // 进入活动详情
         function detailAct(act_id){
           store.commit('active/enterActDetail', [act_id, false])
         }
-
+        
+        // 修改个人信息
         function modifySelf() {
           getInfo.is_show = false
           for (let key in inputValItem){
               inputValItem[key].style.backgroundColor='#EEE0E5'
           }
-
         }
+
+        // 提交信息
         function submitSelf() {
           getInfo.is_show = 'disabled'
           for (let key in inputValItem){
@@ -229,6 +244,21 @@
 .selfinfo{
   display: flex;
   margin-left: 2vw;
+}
+
+/* 用户头像 */
+.userimg>img{
+  margin-top:20px;
+  width: 8vw;
+  height: 15vh;
+  border-radius: 100px;
+  border: solid #d6d6d6 1px;
+  box-shadow: 10px 10px 20px #5d5f64;
+  transition: all 1s;
+}
+
+.userimg>img:hover{
+  transform: scale(1.1);
 }
 
 /* 可修改信息样式 */
@@ -311,14 +341,7 @@ h4{
   color: rgb(51, 110, 238);
 }
 
-.userimg>img{
-  margin-top:20px;
-  width: 8vw;
-  height: 15vh;
-  border-radius: 100px;
-  border: solid #d6d6d6 1px;
-  box-shadow: 10px 10px 20px #5d5f64;
-}
+
 
 
 /* 活动 样式开始 */
@@ -330,9 +353,6 @@ h4{
   margin: 5vh 0 0vh 14vw;
   padding: 30px 0 0 1vw;
 
-  /* border-radius: 10px;
-  border: solid #d6d6d6 1px;
-  box-shadow: 10px 10px 20px #5d5f64; */
 }
 
 ul{
@@ -409,10 +429,6 @@ ul{
   justify-content: space-between;
   align-items: flex-end;
 }
-
-
-
-
 /* 创建活动样式结束 */
 
 

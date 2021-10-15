@@ -37,7 +37,6 @@
               axios.get(url).then(
                   response=>{
                       if (response.data.code===200){
-                        console.log(response.data.data);
                         activeInfo.info = response.data.data
                       }else{
                           alert(response.message)

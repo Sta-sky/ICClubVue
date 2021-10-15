@@ -33,6 +33,7 @@
                     name='cardAct'
                     appear
                 >
+                <el-empty v-if="have_active" description="没有创建过活动，快去创建吧！"></el-empty>
                     <li 
                         class="actCard"
                         v-for="items in contentInfo" 
@@ -80,34 +81,33 @@
         name: 'actList',
         components: {ActiveDetail},
         setup() {
-            const keyWord = ref('')
-            const select = ref('')
-            const tagList = getTag()
             const store = useStore()
-            const selecttags = ref('请输入要搜索的内容')
-            let enterActDetail = (id) => {
-                store.commit('active/enterActDetail', [id, false])
-            }
-
-            const handleClose = (done) => {
-                store.commit('active/CLOSEDRAWER')
-                done()
-            }
-
+            const tagList = getTag()
+            const activeParams = reactive({
+                keyWord: null,
+                select:null,
+                selecttags: '请输入要搜索的内容',
+                have_active: computed(()=>{
+                }),
+                handleClose: (done)=>{
+                    store.commit('active/CLOSEDRAWER')
+                    done()
+                },
+                enterActDetail: (id) => {
+                    store.commit('active/enterActDetail', [id, false])
+                },
+            })
             store.dispatch('active/updateActInfo', [1, null])
             function selectTag(params) {
-                selecttags.value = params 
+                activeParams.selecttags = params 
             }
+            
         return {
-            keyWord,
-            select,
+            ...toRefs(activeParams),
             tagList,
             drawer: computed(() => store.state.active.drawerDetail.dra_flag),
-            enterActDetail,
             contentInfo: computed(() => store.state.active.activeInfo),
             selectTag,
-            selecttags,
-            handleClose,
             ...toRefs(store.state.active.drawerDetail)
             }
         },
