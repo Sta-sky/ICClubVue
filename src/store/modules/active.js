@@ -5,7 +5,9 @@ const state = () => ({
     drawerDetail: {
         dra_flag: false,
         id: null,
-        official: false
+        official: false,
+        scrollFlag: true,
+        destroyFlag: true
     },
     activeInfo: []
 })
@@ -41,14 +43,14 @@ const actions = {
 const mutations = {
     CLOSEDRAWER(state){
         state.drawerDetail.dra_flag = false
+        console.log(state.drawerDetail.dra_flag);
     },
 
     enterActDetail(state, params){
-        console.log(params);
-        console.log(state.drawerDetail.official);
         state.drawerDetail.official = params[1]
         state.drawerDetail.id = params[0]
         state.drawerDetail.dra_flag = true
+        console.log(state.drawerDetail.dra_flag);
     },
 
     UPDATEACTINFO(state, actinfo){

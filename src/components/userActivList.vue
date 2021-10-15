@@ -40,11 +40,11 @@
     import {useRouter} from 'vue-router'
     import {toRefs} from 'vue'
     import {httpServer, staticServer} from '../hook/util'
-    import getUser from '../hook/getUser'
+    import {getUser} from '../hook/getUser'
     export default {
         name: 'userActivList',
         setup() {
-            const userInfo = getUser()
+            let userInfo = getUser()
             const router = useRouter()
             function judgeSex(gender){
                 let imgs = ''
@@ -56,8 +56,8 @@
                 return `${staticServer}/images/icon/${imgs}`
             }
 
-            function insertUser(params) {
-                router.push('/userinfo')
+            function insertUser(act_id) {
+                router.push({path: '/userinfo', query: {id: act_id}})
             }
             return {...toRefs(userInfo), judgeSex, staticServer, insertUser}
         }

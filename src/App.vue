@@ -38,7 +38,7 @@
 
   /* 样式的起手式 */
 
-  html,body {
+  html, body, td, th {
     margin: 0;
     padding:0;
     height: 100%;
@@ -89,27 +89,27 @@
     min-height: 400px;
   }
 
-    /* 动画 */
-    /* 主页卡片动画 */
-    .cardAct-leave-to{
-      display: none;
-    }
-    .cardAct-enter-active {
-        animation: cardMove 0.5s infinite;
-    }
-    .cardAct-leave-active {
-        animation: cardMove 0.5s reverse;
-    }
+  /* 动画 */
+  /* 主页卡片动画 */
+  .cardAct-leave-to{
+    display: none;
+  }
+  .cardAct-enter-active {
+      animation: cardMove 0.5s infinite;
+  }
+  .cardAct-leave-active {
+      animation: cardMove 0.5s reverse;
+  }
 
-    @keyframes cardMove {
-        from {
-            transform: translateX(-100%);
-        }
-        to{
-            transform: translateX(0px);
-            display: none;
-        }
-    }
+  @keyframes cardMove {
+      from {
+          transform: translateX(-100%);
+      }
+      to{
+          transform: translateX(0px);
+          display: none;
+      }
+  }
 
     /* 用户列表、 兴趣 动画 */
     .userTagact-leave-to{

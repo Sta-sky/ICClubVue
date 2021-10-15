@@ -44,7 +44,11 @@
           const router =  proxy.$root.$router
           const isCollapse = ref(true)
           const handleSelect = (key, keyPath) => {
-            router.push(keyPath[0])
+            if (keyPath[0] == '/userinfo'){
+              router.push({path: keyPath[0], query: {id: 1}})
+            }else{
+              router.push(keyPath[0])
+            }
           }
           return {
             isCollapse,

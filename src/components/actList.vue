@@ -51,7 +51,6 @@
                         </div>
                     </li>
                 </transition-group>
-                
             </ul>
         </div>
     </div>
@@ -73,7 +72,7 @@
     import axios from 'axios'
     import {ref, computed, provide, reactive, toRefs, onBeforeMount, onMounted} from 'vue'
     import {useRouter} from 'vue-router'
-    import {getActiv, getTag} from '../hook/activeHook'
+    import { getTag} from '../hook/activeHook'
     import ActiveDetail from './ActiveDetail' 
     import {useStore} from 'vuex'
     import { ElMessageBox } from 'element-plus'
@@ -81,11 +80,6 @@
         name: 'actList',
         components: {ActiveDetail},
         setup() {
-            const drawerInfo = reactive({
-                scrollFlag: true,
-                destroyFlag: true
-            })
-            const router = useRouter()
             const keyWord = ref('')
             const select = ref('')
             const tagList = getTag()
@@ -104,7 +98,6 @@
             function selectTag(params) {
                 selecttags.value = params 
             }
-
         return {
             keyWord,
             select,
@@ -115,7 +108,7 @@
             selectTag,
             selecttags,
             handleClose,
-            ...toRefs(drawerInfo)
+            ...toRefs(store.state.active.drawerDetail)
             }
         },
     }

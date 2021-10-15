@@ -20,7 +20,7 @@ export default createRouter({
         },
         {
             path: '/userinfo',
-            component: UserIndex
+            component: UserIndex,
         },
         {
             path: '/Comment',
