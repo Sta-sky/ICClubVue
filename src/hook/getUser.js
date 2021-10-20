@@ -1,6 +1,6 @@
 import {reactive, onBeforeMount} from 'vue'
 import axios from 'axios'
-import {httpServer} from './util'
+import {httpServer, messageTip} from './util'
 
 
 // 获取活跃用户列表
@@ -12,8 +12,7 @@ const getUser = () =>{
                 if (response.data.code === 200){
                     userInfo.userinfo = response.data.data
                 }else{
-                    alert(response.data.message)
-                    return userInfo.userinfo = []
+                    alert(response.data.message, ']]]]')
                 }
             },
             error=>{
@@ -60,7 +59,7 @@ const getUserIndex = (act_id) =>{
             method: 'get',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Ilx1Njc0ZVx1OTZlZlx1ODNmMiIsImV4cCI6MTYzNDM3NzkwNS4zNDk1Mzl9.r6XfHFKzzf3zbAmCWFZgqKC7S_GyrW04ARql1qsICwM'
+                'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Ilx1Njc0ZVx1OTZlZlx1ODNmMiIsImV4cCI6MTYzNDcxOTExMC4yOTI3ODg3fQ.zEbWDHD3JoMmxhc8pnOCsJqPDQgWZ9kMjakb3wylRY0'
             }
 
         }).then(
@@ -86,14 +85,13 @@ const getUserIndex = (act_id) =>{
                     userInfo.create_act_info = backData.create_act_info
                     userInfo.join_act_info = backData.join_act_info
                 }else if(response.data.code === 10201){
-                    alert(response.data.message)
+                    messageTip('warning', response.data.message)
                 }else{
-                    alert(response.data.message)
+                    messageTip('warning', response.data.message)
                 }
             },
             error=>{
-                console.log('========');
-                alert(error.message)
+                messageTip('error', response.data.message)
             }
         )
       })

@@ -12,15 +12,14 @@ export default {
 }
 </script>
 <style lang="css">
-
     #footer{
         margin-top: 50px;
-        width: 100vw;
+        /* width: 100vw; */
         height: 7vh;
         background-color: #2e3144;
         bottom: 0;
         z-index: 5;
-        color: whitesmoke;
+        color: #b8c1ec;
         opacity: 0.89;
     }
     #footer .footer{

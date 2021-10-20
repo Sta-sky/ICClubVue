@@ -9,7 +9,9 @@
         <div class="bottom_info">
             <div class="left_info">
                 <h1>{{info.subject}}</h1>
-                <img :src="`${staticServer}/${info.act_img}`" alt="">
+                <div>
+                    <img :src="`${staticServer}/${info.act_img}`" alt="">
+                </div>
                 <div class="tips_info">
                     <span>点赞数：{{info.click_nums}}</span>
                     <span>创建时间：{{info.created_time}}</span>
@@ -18,8 +20,8 @@
             <div class="right_info">
                 <el-empty v-if="is_content" description="活动没有添加内容"></el-empty>
                 <p>{{info.content}}</p>
-                <textarea rows="5" cols="92"></textarea>
-                <el-button type="primary" icon="el-icon-comment" ></el-button>
+                <textarea rows="5"></textarea>
+                <el-button type="primary" icon="el-icon-comment" >提交</el-button>
             </div>
         </div>
     </div>
@@ -78,6 +80,8 @@
     .detail_box{
         display: flex;
         flex-direction: column;
+        background-color: #f9f4ef;
+        padding: 10vh 3vw 10vh 3vw;
     }
 
     .top_info{
@@ -86,23 +90,21 @@
         justify-content:flex-end;
     }
 
-    .top_info>button{
-        margin: 30px;
-    }
-
     .bottom_info{
         display: flex; 
+        justify-content: space-between;
     }
 
     /* 左边格式  box shaow左 上 下  右 */
     .left_info{
-        margin-right: 20px;
+        margin-top: 5vh;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 300px;
-        padding: 40px 40px 10px 10px;
-        background-color: burlywood;
+        align-items: center;
+        height: 40vh;
+        background-color: #eaddcf;
+        padding: 2vh 2vw 2vh 2vw;
         box-shadow:
             -2px 0 10px -1px black,
             0 -2px 10px -1px black, 
@@ -110,33 +112,51 @@
             2px 0 10px -1px black;
     }
 
-    .left_info>img{
-        width: 200px;
-        height: 150px;
+
+    .left_info>div>img{
+        width: 15vw;
+        height: 25vh;
     }
 
     .tips_info{
         display: flex;
-        justify-content: space-between;
+        justify-content:space-around;
     }
 
 
     /* 右边格式 */
-
     .right_info{ 
+        background-color:  #eff0f3;
+        margin-top: 5vh;
+        width:35vw;
+        padding: 5vh 3vw 5vh 3vw;
          box-shadow:inset 
         -1px 0px 5px white,
         0px -1px 5px white,
         0px 1px 5px white,
         1px 0px 5px white; 
+        margin-left: 3vw;
     }
 
+    .right_info>p{
+        border-radius: 10px;
+        margin: 0 0 5vh 0;
+        color: #2a2a2a;
+    }
 
+    .right_info>textarea{
+        width:35vw;
+        display: block;
+        margin-bottom:2vh ;
+    }
+
+    .right_info>button{
+        float: right;
+    }
     .btn_comm{
         width: 68px;
         height: 35px;
         float: right;
-        margin-right: 30px;
         border-radius: 5px;
         font-size: 16px;
         cursor: pointer;

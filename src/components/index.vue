@@ -53,9 +53,10 @@
   }
 
   .middle{
-    margin-top: 50px;
     display: flex;
     flex-direction: column;
+    margin-top: 5vh;
+
   }
 
   .mid_bto{
@@ -66,10 +67,10 @@
   /* 中间左部布局 */
   .mid_bto_letf{
     flex: 3;
-    margin-right: 10PX;
     border-radius: 10px;
     border: solid #d6d6d6 1px;
     box-shadow: 10px 10px 20px #5d5f64;
+    margin-top: 5vh;
   }
 
   /*中间右部布局  */
@@ -77,7 +78,8 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
+    margin-left: 2vw;
+    margin-top: 5vh;
   }
 
   .mid_bto_right_top{
@@ -89,10 +91,6 @@
 
   .mid_bto_right_bto{
     flex: 3;
-    width: 18vw;
-    border-radius: 10px;
-    border: solid #d6d6d6 1px;
-    box-shadow: 10px 10px 20px #5d5f64;
   }
 
 

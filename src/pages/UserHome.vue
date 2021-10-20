@@ -73,7 +73,7 @@
           <ul class='joinAct'>
             <transition-group name='userTagact' appear>
               <el-empty v-if="join_list" description="没有参加过活动，快去参加吧！"></el-empty>
-              <li @click=detailAct(item.act_id) class='joinCard' v-for="(item, index) in create_act_info" :key="index">
+              <li @click=detailAct(item.act_id) class='joinCard' v-for="(item, index) in join_act_info" :key="index">
                 <div @click.stop=getDetail(item.act_id)>
                   <el-popover 
                   
@@ -208,7 +208,7 @@
         function submitSelf() {
           getInfo.is_show = 'disabled'
           for (let key in inputValItem){
-              inputValItem[key].style.backgroundColor='#BCD2EE'
+              inputValItem[key].style.backgroundColor='#f2f4f6'
           }
         }
 
@@ -269,7 +269,7 @@
   flex-direction: column;
   justify-content: space-between;
   font-size: 1.5rem;
-  background-color: #BCD2EE;
+  background-color: #eff0f3;
   border-radius: 10px;
   border: solid #d6d6d6 1px;
   box-shadow: 10px 10px 20px #5d5f64;
@@ -283,10 +283,11 @@ div>input{
   display: inline-block;
   width: 10vw;
   text-align: center;
+  color: #1b2d45;
   font-size: 18px;
-  border: 1px solid #BCD2EE;
+  border: 1px #f2f4f6 solid ;
   border-radius: 4px;
-  background-color: #BCD2EE;
+  background-color: #f2f4f6;
   padding: 4px 7px;
   font-family: "楷体","楷体_GB2312"; 
 
@@ -303,6 +304,11 @@ div>input{
   margin: 10px 0 0 40px;
 }
 
+.oneInfo>span{
+  color:#00214d;
+}
+
+
 .fixeinfo>.oneInfo{
   background-color: rgb(219, 215, 210);
   border-radius: 10px;
@@ -316,7 +322,7 @@ div>input{
 
 /* 不可修改信息 样式开始 */
 .fixeinfo{
-  background-color: #93e5e5;
+  background-color: #f2f4f6;
   width: 20vw;
   height: 30vh;
   border-radius: 10px;
@@ -373,7 +379,7 @@ ul{
   padding-bottom: 1vh;
   margin-bottom: 15px;
   font-weight: 700;
-  color: #918db4;
+  color: #094067;
   transition: all 1.2s;
   border-bottom: solid black 1px;
 }
@@ -396,7 +402,7 @@ ul{
 }
 
 .createCard, .joinCard{
-  background-color: lightsteelblue;
+  background-color: #d8eefe;
   margin: 10px 0 0 0 ;
   width: 20vw;
   height: 4vh;
@@ -410,14 +416,20 @@ ul{
   padding: 10px 10px;
 }
 
-.createCard>div:nth-child(1):hover, .joinCard>div:nth-child(1):hover{
-  color: #d0ee29;
-  transform: scale(1.1);
+.createCard>div:nth-child(2), .joinCard>div:nth-child(2){
+  color: #00214d;
+  font-weight: 700;
 }
 
 .createCard>div:nth-child(1), .joinCard>div:nth-child(1){
-  color: green;
+  transition: all 0.5s;
 }
+
+
+.createCard>div:nth-child(1):hover, .joinCard>div:nth-child(1):hover{
+  transform: scale(1.2);
+}
+
 
 
 .createCard>div:nth-child(3), .joinCard>div:nth-child(3){
@@ -425,7 +437,7 @@ ul{
   flex-direction: column;
   height: 100%;
   font-size: 15px;
-  color: yellow;
+  color: #ef4565;
   justify-content: space-between;
   align-items: flex-end;
 }
@@ -433,15 +445,12 @@ ul{
 
 
 /* 参加活动  样式开始 */
-.joinCard{
-  background-color: rgb(144, 165, 185);
-
-}
 
 /* 弹窗详情 */
 .tipDetail{
   padding: 1vh 1vw 0 1vw;
   display: flex;
+  background-color: #faeee7;
   flex-direction: column;
   justify-content: space-between;
   font-family: "楷体","楷体_GB2312"; 
@@ -456,15 +465,17 @@ ul{
 
 .tipDetail>span{
   font-size: 1.2rem;
+  color: #594a4e;
 }
 
 .tipDetail>h3{
+  color: #33272a;
   font-size: 2rem;
   margin-bottom: 2vh;
 }
 
 .tip span{
-  color: #545658;
+  color: #594a4e;
 
 }
 

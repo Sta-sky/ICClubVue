@@ -5,7 +5,7 @@
             <div class="search">
                 <el-input
                     v-model="keyWord"
-                    :placeholder=selecttags
+                    placeholder='请输入要搜索的内容'
                     class="input-with-select"
                 >
                     <template #prepend>
@@ -22,7 +22,7 @@
                         </el-select>
                     </template>
                     <template #append>
-                        <el-button icon="el-icon-search">搜搜</el-button>
+                        <el-button icon="el-icon-search">{{searchKey}}</el-button>
                     </template>
                 </el-input>
             </div>
@@ -82,11 +82,11 @@
         components: {ActiveDetail},
         setup() {
             const store = useStore()
-            const tagList = getTag()
+            let tagList = getTag()
             const activeParams = reactive({
                 keyWord: null,
+                searchKey: '全局',
                 select:null,
-                selecttags: '请输入要搜索的内容',
                 have_active: computed(()=>{
                 }),
                 handleClose: (done)=>{
@@ -99,7 +99,7 @@
             })
             store.dispatch('active/updateActInfo', [1, null])
             function selectTag(params) {
-                activeParams.selecttags = params 
+                activeParams.searchKey = params 
             }
             
         return {
@@ -139,27 +139,21 @@
 
     .actlist{
         margin-top: 10px;
+        display: flex;
     }
 
-    .actCardList{
-        background-color: #CCCCFF;
-        display: flex;
-        flex-direction: row;
-        font-size: 40px;
-        align-items: center;
-    }
 
     .actCard{
         border-radius: 10px;
-        border: solid #d6d6d6 1px;
+        border: solid #f6efef 1px;
         margin: 40px 50px;
         height: 20vh;
-        background-color: #F8F8FF;
+        background-color: #f6efef;
         display: flex;
     }
 
     .actCard:hover{
-        box-shadow: 0 -9px 5px -5px  rgba(255,255,255, 0.8) inset, /* dark shadow */
+        box-shadow: 0 -9px 5px -5px  rgba(255,255,255, 1) inset, /* dark shadow */
         2px -2px 3px 0px rgba(255,255,255, 1), /* white - top */
         2px 2px 3px 0px rgba(255,255,255, 1); /* white - bottom */
 
@@ -194,6 +188,9 @@
         line-clamp: 2;
         -webkit-box-orient: vertical;
     }
+    .conteneInfo>h2{
+        color: #181818;
+    }
 
     .detail{
         flex: 1;
@@ -205,27 +202,30 @@
 
     .label{
         margin-top: 10px;
-        background-color: #6699ff;
+        background-color: #a180ca;
 
     }
     .hot{
         margin-top: 10px;
-        background-color: #FF7F00;
+        background-color: #4fc4cf;
     }
     .times{
         margin-bottom: 10px;
-        background-color: #CDC5EE;
+        background-color: #fbdd74;
 
     }
 
     .detail>span{
         margin-right: 10px;
         padding: 0px 10px;
-        color: white;
-        text-align: center;
+        height: 2.5vh;
+        color: rgb(15, 61, 75);
         border-radius: 20px;
         font-size: 15px;
         font-weight: bolder;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     /* 为抽屉添加滚轮 */

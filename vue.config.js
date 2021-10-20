@@ -14,10 +14,10 @@ module.exports = {
       https: false, //是否开启HTTPS服务
       proxy: {
         ['/api']: {
-          target: 'http://localhost:7000',
+          target: 'http://127.0.0.1:7000',
           pathRewrite: {['^/api']: ''}//将访问路径的/api/替换成’‘，后台服务不用加api了,但前端的请求地址还是要加/api/
         }
       }
-    },
+    }
   }
 

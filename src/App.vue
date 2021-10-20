@@ -6,7 +6,7 @@
         <indexTop></indexTop>
       </div>
       <div id="box_mid">
-          <router-view></router-view>
+          <router-view class="view"></router-view>
       </div>
     </div>
     <div>
@@ -62,6 +62,7 @@
   }
   /* 样式的起手式  end*/
 
+
   #all_box{
     display: flex;
     flex-direction: column;
@@ -69,19 +70,15 @@
     justify-content: space-between;
   }
 
-  #header{
-    width: 10vw;
-  }
-
   /* 弹性布局 */
   #box{
     display:flex;
+    flex-direction: column;
     justify-content: space-between;
   }
 
   #box_mid{
-    width: 100vw;
-    margin-left: 5vw;
+    margin-left: 15vw;
   }  
 
   .el-menu-vertical-demo:not(.el-menu--collapse) {
@@ -91,46 +88,46 @@
 
   /* 动画 */
   /* 主页卡片动画 */
-  .cardAct-leave-to{
+
+
+  /* .cardAct-leave-to{
     display: none;
-  }
+  } */
+
   .cardAct-enter-active {
       animation: cardMove 0.5s infinite;
   }
   .cardAct-leave-active {
+      display:none;
       animation: cardMove 0.5s reverse;
   }
 
   @keyframes cardMove {
       from {
-          transform: translateX(-100%);
+        transform: translateX(-50px);
       }
       to{
-          transform: translateX(0px);
-          display: none;
+        display: none;
+
       }
   }
 
     /* 用户列表、 兴趣 动画 */
-    .userTagact-leave-to{
-      display: none;
-    }
     .userTagact-enter-active {
-        animation: userTagactMove 0.5s infinite;
-
+        animation: userTagactMove 0.5s infinite; 
     }
 
     .userTagact-leave-active {
+        display:none;
         animation: userTagactMove 0.5s reverse;
     }
 
     @keyframes userTagactMove {
         from {
-            transform: translateX(100%);
+          transform: translateX(100px);
         }
         to{
-            transform: translateX(0px);
-            display: none;
+          display: none;
         }
     }
 

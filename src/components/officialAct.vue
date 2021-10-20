@@ -66,12 +66,12 @@
   }
   
   .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
+    background-color: #9099a3;
   }
   
   .official{
     border-radius: 10px;
-    background-color: #CCCCFF;
+    background-color: #f2eef5;
     display: flex;
     flex-direction: row;
     font-family: "Microsoft YaHei",SimSun,'\5b8b\4f53',sans-serif;

@@ -1,5 +1,5 @@
 <template lang="">
-    <div class='box'>
+    <div class='box_interst'>
         <h1>兴趣列表</h1>
         <ul>
             <transition-group name='userTagact' appear>
@@ -9,7 +9,6 @@
             </transition-group>
         </ul>
     </div>
-
 </template>
 <script>
 import {getTag} from '../hook/activeHook'
@@ -20,6 +19,7 @@ export default {
         let tagList = getTag()
         const store = useStore()        
         let showTagActive = (tag) => {
+            console.log(tag);
             store.dispatch('active/updateActInfo', [1, tag])
         }
 
@@ -32,15 +32,18 @@ export default {
 }
 </script>
 <style lang="css" scoped>
-    .box{
+
+    .box_interst{
         border: solid #d6d6d6 1px;
         border-radius: 10px;
         box-shadow: 10px 10px 20px #5d5f64;
+        display: flex;
+        flex-direction: column;
     }
 
     h1{
         margin: 20px 0px 20px 20px;
-        color: rgb(95, 99, 102);
+        color: #181818;
         font-size: 30px;
     }
 
@@ -55,12 +58,14 @@ export default {
         width: 100px;
         height: 40px;
         margin: 10px 10px;
-        background-color: #7fa0ff;
+        background-color: #4fc4cf;
         margin-top: 10;
         border-radius: 10px;
         display:flex;
         flex-direction: row;
         justify-content: center;
+        align-items: center;
+        color: #181818;
  
     }
     li:hover {

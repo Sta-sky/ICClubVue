@@ -12,7 +12,7 @@ var getTag = ()=>{
                     tagList.tag = response.data.data
                 }
             },error=>{
-                alert('服务器请求兴趣列表出错了', error.message)
+                alert( error)
                 tagList.tag = []
             }
         )

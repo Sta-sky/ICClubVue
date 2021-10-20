@@ -3,6 +3,7 @@ import Comment from '../pages/Comment'
 import Index from '../components/index'
 import UserIndex from '../pages/UserHome'
 import CreateActive from '../pages/CreateActive'
+import actCenter from '../components/active/actCenter'
 
 
 
@@ -25,6 +26,10 @@ export default createRouter({
         {
             path: '/Comment',
             component: Comment
+        },
+        {
+            path: '/actCenter',
+            component: actCenter
         },
     ]
   })

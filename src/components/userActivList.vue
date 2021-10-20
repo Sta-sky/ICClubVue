@@ -1,6 +1,7 @@
 <template lang="">
+<div class='userList'>
     <h1>活跃用户</h1>
-    <ul class="usertList" >
+    <ul>
         <transition-group name='userTagact' appear>
             <li 
                 @click=insertUser(item.user_id)
@@ -34,7 +35,7 @@
             </li>
         </transition-group>
     </ul>
-
+</div>
 </template>
 <script>
     import {useRouter} from 'vue-router'
@@ -65,10 +66,17 @@
 
 </script>
 <style lang="css" scoped>
-    
+    .userList{
+        border-radius: 10px;
+        border: solid #d6d6d6 1px;
+        box-shadow: 10px 10px 20px #5d5f64;
+        padding-bottom: 3vh;
+    }
+
+
     h1{
-        margin: 20px 0px 50px 30px;
-        color: rgb(95, 99, 102);
+        margin: 20px 0px 30px 30px;
+        color: #181818;
         font-size: 30px;
     }
 
@@ -78,6 +86,7 @@
         margin-bottom: 10px;
         margin-left: 15px;
         border-radius: 10px;
+        background-color: #fffffe;
         border: solid #d6d6d6 1px;
         box-shadow: 10px 10px 20px #5d5f64;
         display: flex;
@@ -96,6 +105,8 @@
         flex-direction: column;
         justify-content: space-between;
         margin-left: 20px;
+        color: #2e2e2e;
+        font-family: "楷体","楷体_GB2312"; 
     }
 
     .img_user>img{
